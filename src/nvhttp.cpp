@@ -589,6 +589,12 @@ namespace nvhttp {
           std::getline(std::cin, pin);
 
           getservercert(ptr->second, tree, pin);
+        } else if (config::sunshine.flags[config::flag::CONST_PIN]) {
+                    // Auto-accept pairing with universal PIN (no user interaction required)
+                            BOOST_LOG(info) << "Auto-accepting pairing request (CONST_PIN enabled)"sv;
+                    ptr->second.client.name = "AutoPairedClient";
+                    getservercert(ptr->second, tree, "0000");
+          
         } else {
 #if defined SUNSHINE_TRAY && SUNSHINE_TRAY >= 1
           system_tray::update_tray_require_pin();
