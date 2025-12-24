@@ -1018,7 +1018,9 @@ namespace config {
           break;
         case 'p':
           config::sunshine.flags[config::flag::UPNP].flip();
-          break;
+          break;        case 'a':
+                  config::sunshine.flags[config::flag::CONST_PIN].flip();
+                  break;
         default:
           BOOST_LOG(warning) << "config: Unrecognized flag: ["sv << *line << ']' << std::endl;
           ret = -1;
